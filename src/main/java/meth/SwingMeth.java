@@ -40,8 +40,4 @@ public class SwingMeth {
         c.gridwidth = GridBagConstraints.REMAINDER;
         panel.add(component, c);
     }
-
-    /*public static void closeWindow(JFrame frame){
-        frame.dispose();
-    }*/
 }
