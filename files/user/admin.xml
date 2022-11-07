@@ -1,0 +1,6 @@
+<data.User>
+  <id>0</id>
+  <name>admin</name>
+  <password>admin</password>
+  <isAdmin>true</isAdmin>
+</data.User>
