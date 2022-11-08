@@ -1,7 +1,6 @@
 package meth;
 
 import data.User;
-import gui.AddUser;
 import gui.EditUser;
 
 import java.io.File;
@@ -20,7 +19,7 @@ public class EditUserMeth {
     static ArrayList<String> allNames;
     static User user;
 
-    public static void createUser(String name, String oldPass, String pass, String rePass, boolean check) {
+    public static void editUser(String name, String oldPass, String pass, String rePass, boolean check) {
         validFill = true;
         validUser = true;
         validPass = false;
@@ -33,8 +32,8 @@ public class EditUserMeth {
 
 
         //check if username is available
-        if(!name.equals(user.getName()))
-        checkUsername();
+        if (!name.equals(user.getName()))
+            checkUsername();
 
         //check if password is correct
         checkPassword();
@@ -52,8 +51,8 @@ public class EditUserMeth {
                 break;
             }
         }
-        AddUser.updateGuiUser(validUser);
-        if(validUser){
+        EditUser.updateGuiUser(validUser);
+        if (validUser) {
             editUserName();
         }
     }
@@ -64,26 +63,26 @@ public class EditUserMeth {
 
             if (name.equals(users)) {
                 user = (User) readFile(folder, element);
-                if(oldPass.equals(user.getPassword()) && pass.equals(rePass)){
+                if (oldPass.equals(user.getPassword()) && pass.equals(rePass)) {
                     editUserPass();
                 }
             }
-                AddUser.updateGuiPass(validPass);
-            }
+            EditUser.updateGuiPass(validPass);
         }
+    }
 
-        private static void editUserName(){
-            File oldFile = new File(createFilePath(PATH, createFileName(user.getName()), END));
-            oldFile.delete();
+    private static void editUserName() {
+        File oldFile = new File(createFilePath(PATH, createFileName(user.getName()), END));
+        oldFile.delete();
 
-            user.setName(name);
+        user.setName(name);
 
-            objToXML(user, createFilePath(PATH, createFileName(name), END));
-            EditUser.closeWindow();
-        }
+        objToXML(user, createFilePath(PATH, createFileName(name), END));
+        EditUser.closeWindow();
+    }
 
-        private static void editUserPass(){
+    private static void editUserPass() {
         user.setPassword(pass);
         objToXML(user, createFilePath(PATH, createFileName(user.getName()), END));
-        }
+    }
 }

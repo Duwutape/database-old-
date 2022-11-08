@@ -11,7 +11,7 @@ import java.awt.event.ItemListener;
 import java.io.File;
 import java.util.ArrayList;
 
-import static meth.AddUserMeth.createUser;
+import static meth.EditUserMeth.editUser;
 import static meth.Meth.*;
 import static meth.SwingMeth.addToPanel;
 
@@ -20,16 +20,14 @@ public class EditUser extends JFrame implements ActionListener, ItemListener {
     static JFrame frame;
     static JPanel panel;
     JLabel name, password, repeatPass, makeAdmin, getUser;
-    static JLabel invalidUser;
-    static JLabel invalidPass;
-    static JLabel invalidFill;
+    static JLabel invalidUser, invalidPass, invalidFill, invalidAdmin;
     JTextField tfName;
-    JPasswordField tfPass, tfRePass;
+    JPasswordField tfOldPass, tfRePass, tfPass;
     JButton button;
     JCheckBox checkBox;
     JComboBox<String> comboBox;
     boolean inputCheck;
-    String inputName, inputPass, inputRePass;
+    String inputName, inputOldPass, inputRePass;
     final String PATH = "files/user";
     File folder = new File(PATH);
     String selectedUser;
@@ -64,20 +62,21 @@ public class EditUser extends JFrame implements ActionListener, ItemListener {
         repeatPass = new JLabel("Repeat Password");
         makeAdmin = new JLabel("Make this user admin?");
         tfName = new JTextField(15);
-        tfPass = new JPasswordField(15);
+        tfOldPass = new JPasswordField(15);
         tfRePass = new JPasswordField(15);
         button = new JButton("Submit");
         checkBox = new JCheckBox();
         invalidUser = new JLabel("Username is already taken");
         invalidPass = new JLabel("Password is not correct");
         invalidFill = new JLabel("All fields must be filled in");
+        invalidAdmin = new JLabel("This User can't be edited");
 
         addToPanel(panel, getUser, 0.5, 1, 0, 1);
         addToPanel(panel, comboBox, 0.5, 2, 0, 1);
         addToPanel(panel, name, 0.5, 1, 1, 1);
         addToPanel(panel, tfName, 0.5, 2, 1, 1);
         addToPanel(panel, password, 0.5, 1, 2, 1);
-        addToPanel(panel, tfPass, 0.5, 2, 2, 1);
+        addToPanel(panel, tfOldPass, 0.5, 2, 2, 1);
         addToPanel(panel, repeatPass, 0.5, 1, 3, 1);
         addToPanel(panel, tfRePass, 0.5, 2, 3, 1);
         addToPanel(panel, makeAdmin, 0.5, 1, 4, 1);
@@ -86,6 +85,10 @@ public class EditUser extends JFrame implements ActionListener, ItemListener {
 
         button.addActionListener(this);
         comboBox.addItemListener(this);
+
+        if(comboBox.getItemAt(comboBox.getSelectedIndex()).equals("admin")){
+            updateGuiAdmin(false);
+        }
     }
 
     @Override
@@ -96,32 +99,48 @@ public class EditUser extends JFrame implements ActionListener, ItemListener {
         for (String element : allNames) {
             String users = convertName(removeEnding(element));
 
-            if (selectedUser.equals(users)) {
+            if (selectedUser.equals("admin")){
+                updateGuiAdmin(false);
+            }
+            else if (selectedUser.equals(users)) {
                 user = (User) readFile(folder, element);
+                updateGuiAdmin(true);
             }
         }
-        panel.remove(tfName);
-        tfName = new JTextField(user.getName(), 15);
-        addToPanel(panel, tfName, 0.5, 2, 1, 1);
-        frame.setVisible(true);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
         inputName = tfName.getText();
-        inputPass = tfPass.getText();
+        inputOldPass = tfOldPass.getText();
+        inputPass = tfOldPass.getText();
         inputRePass = tfRePass.getText();
         inputCheck = checkBox.isSelected();
 
-        createUser(inputName, inputPass, inputRePass, inputCheck);
+        editUser(inputName, inputOldPass, inputPass, inputRePass, inputCheck);
+    }
+
+    private void updateGuiAdmin(boolean valid) {
+        if (valid) {
+            panel.remove(invalidAdmin);
+            panel.remove(tfName);
+            panel.remove(checkBox);
+            tfName = new JTextField(user.getName(), 15);
+            checkBox = new JCheckBox("",user.isAdmin());
+            addToPanel(panel, tfName, 0.5, 2, 1, 1);
+            addToPanel(panel, checkBox, 0.5, 2, 4,1);
+            frame.setVisible(true);
+        } else {
+            addToPanel(panel, invalidAdmin, 0.5, 2, 6, 1);
+        }
     }
 
     public static void updateGuiFill(boolean valid) {
         if (valid) {
             panel.remove(invalidFill);
         } else {
-            addToPanel(panel, invalidFill, 0.5, 2, 5, 1);
+            addToPanel(panel, invalidFill, 0.5, 2, 7, 1);
         }
         frame.setVisible(true);
     }
@@ -130,7 +149,7 @@ public class EditUser extends JFrame implements ActionListener, ItemListener {
         if (valid) {
             panel.remove(invalidUser);
         } else {
-            addToPanel(panel, invalidUser, 0.5, 2, 6, 1);
+            addToPanel(panel, invalidUser, 0.5, 2, 8, 1);
         }
         frame.setVisible(true);
     }
@@ -139,7 +158,7 @@ public class EditUser extends JFrame implements ActionListener, ItemListener {
         if (valid) {
             panel.remove(invalidPass);
         } else {
-            addToPanel(panel, invalidPass, 0.5, 2, 5, 1);
+            addToPanel(panel, invalidPass, 0.5, 2, 9, 1);
         }
         frame.setVisible(true);
     }
