@@ -19,7 +19,7 @@ public class EditUser extends JFrame implements ActionListener, ItemListener {
 
     static JFrame frame;
     static JPanel panel;
-    JLabel name, password, repeatPass, makeAdmin, getUser;
+    JLabel name, oldPass, pass, repeatPass, makeAdmin, getUser;
     static JLabel invalidUser, invalidPass, invalidFill, invalidAdmin;
     JTextField tfName;
     JPasswordField tfOldPass, tfRePass, tfPass;
@@ -27,7 +27,7 @@ public class EditUser extends JFrame implements ActionListener, ItemListener {
     JCheckBox checkBox;
     JComboBox<String> comboBox;
     boolean inputCheck;
-    String inputName, inputOldPass, inputRePass;
+    String inputName, inputOldPass, inputPass, inputRePass;
     final String PATH = "files/user";
     File folder = new File(PATH);
     String selectedUser;
@@ -58,11 +58,13 @@ public class EditUser extends JFrame implements ActionListener, ItemListener {
         comboBox = new JComboBox<String>(createList(PATH));
         getUser = new JLabel("select User");
         name = new JLabel("Username");
-        password = new JLabel("Password");
+        oldPass = new JLabel("old Password");
+        pass = new JLabel("new Password");
         repeatPass = new JLabel("Repeat Password");
         makeAdmin = new JLabel("Make this user admin?");
         tfName = new JTextField(15);
         tfOldPass = new JPasswordField(15);
+        tfPass = new JPasswordField(15);
         tfRePass = new JPasswordField(15);
         button = new JButton("Submit");
         checkBox = new JCheckBox();
@@ -75,13 +77,15 @@ public class EditUser extends JFrame implements ActionListener, ItemListener {
         addToPanel(panel, comboBox, 0.5, 2, 0, 1);
         addToPanel(panel, name, 0.5, 1, 1, 1);
         addToPanel(panel, tfName, 0.5, 2, 1, 1);
-        addToPanel(panel, password, 0.5, 1, 2, 1);
+        addToPanel(panel, oldPass, 0.5, 1, 2, 1);
         addToPanel(panel, tfOldPass, 0.5, 2, 2, 1);
-        addToPanel(panel, repeatPass, 0.5, 1, 3, 1);
-        addToPanel(panel, tfRePass, 0.5, 2, 3, 1);
-        addToPanel(panel, makeAdmin, 0.5, 1, 4, 1);
-        addToPanel(panel, checkBox, 0.5, 2, 4, 1);
-        addToPanel(panel, button, 0.5, 2, 5, 1);
+        addToPanel(panel, pass, 0.5, 1, 3, 1);
+        addToPanel(panel, tfPass, 0.5, 2, 3, 1);
+        addToPanel(panel, repeatPass, 0.5, 1, 4, 1);
+        addToPanel(panel, tfRePass, 0.5, 2, 4, 1);
+        addToPanel(panel, makeAdmin, 0.5, 1, 5, 1);
+        addToPanel(panel, checkBox, 0.5, 2, 5, 1);
+        addToPanel(panel, button, 0.5, 2, 6, 1);
 
         button.addActionListener(this);
         comboBox.addItemListener(this);
@@ -129,10 +133,10 @@ public class EditUser extends JFrame implements ActionListener, ItemListener {
             tfName = new JTextField(user.getName(), 15);
             checkBox = new JCheckBox("",user.isAdmin());
             addToPanel(panel, tfName, 0.5, 2, 1, 1);
-            addToPanel(panel, checkBox, 0.5, 2, 4,1);
+            addToPanel(panel, checkBox, 0.5, 2, 5,1);
             frame.setVisible(true);
         } else {
-            addToPanel(panel, invalidAdmin, 0.5, 2, 6, 1);
+            addToPanel(panel, invalidAdmin, 0.5, 2, 7, 1);
         }
     }
 
@@ -140,7 +144,7 @@ public class EditUser extends JFrame implements ActionListener, ItemListener {
         if (valid) {
             panel.remove(invalidFill);
         } else {
-            addToPanel(panel, invalidFill, 0.5, 2, 7, 1);
+            addToPanel(panel, invalidFill, 0.5, 2, 8, 1);
         }
         frame.setVisible(true);
     }
@@ -149,7 +153,7 @@ public class EditUser extends JFrame implements ActionListener, ItemListener {
         if (valid) {
             panel.remove(invalidUser);
         } else {
-            addToPanel(panel, invalidUser, 0.5, 2, 8, 1);
+            addToPanel(panel, invalidUser, 0.5, 2, 9, 1);
         }
         frame.setVisible(true);
     }
@@ -158,7 +162,7 @@ public class EditUser extends JFrame implements ActionListener, ItemListener {
         if (valid) {
             panel.remove(invalidPass);
         } else {
-            addToPanel(panel, invalidPass, 0.5, 2, 9, 1);
+            addToPanel(panel, invalidPass, 0.5, 2, 10, 1);
         }
         frame.setVisible(true);
     }
