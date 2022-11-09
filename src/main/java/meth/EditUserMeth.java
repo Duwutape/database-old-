@@ -36,8 +36,13 @@ public class EditUserMeth {
             if (!name.equals(user.getName())) {
                 checkUsername();
             }
-            //check if password is correct
-            checkPassword();
+            if (!pass.equals("")){
+                //check if password is correct
+                checkPassword();
+            }
+            if (check != user.isAdmin()) {
+                editAdmin();
+            }
         }
     }
 
@@ -80,6 +85,12 @@ public class EditUserMeth {
 
     private static void editUserPass() {
         user.setPassword(pass);
+        objToXML(user, createFilePath(PATH, createFileName(user.getName()), END));
+        EditUser.closeWindow();
+    }
+
+    private static void editAdmin() {
+        user.setAdmin(check);
         objToXML(user, createFilePath(PATH, createFileName(user.getName()), END));
         EditUser.closeWindow();
     }
