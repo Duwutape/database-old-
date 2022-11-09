@@ -52,18 +52,12 @@ public class Menu extends JFrame {
     private void createMenu() {
 
         tabbedPane = new JTabbedPane();
-        series = new JPanel();
-        anime = new JPanel();
-        movie = new JPanel();
-        book = new JPanel();
-        game = new JPanel();
-        user = new JPanel();
-        series.setLayout(new GridBagLayout());
-        anime.setLayout(new GridBagLayout());
-        movie.setLayout(new GridBagLayout());
-        book.setLayout(new GridBagLayout());
-        game.setLayout(new GridBagLayout());
-        user.setLayout(new GridBagLayout());
+        series = new JPanel(new GridBagLayout());
+        anime = new JPanel(new GridBagLayout());
+        movie = new JPanel(new GridBagLayout());
+        book = new JPanel(new GridBagLayout());
+        game = new JPanel(new GridBagLayout());
+        user = new JPanel(new GridBagLayout());
 
         tabbedPane.add("Series", series);
         tabbedPane.add("Anime", anime);
