@@ -56,8 +56,8 @@ public class EditUser extends JFrame implements ActionListener, ItemListener {
     }
 
     private void createGui() {
-        comboBox = new JComboBox<String>(createList(PATH));
         getUser = new JLabel("select User");
+        comboBox = new JComboBox<String>(createList(PATH));
         name = new JLabel("Username");
         oldPass = new JLabel("old Password");
         pass = new JLabel("new Password");
