@@ -37,7 +37,7 @@ public class Menu extends JFrame {
         createActionListenerSearch();
         createActionListenerAdd();
         createActionListenerEdit();
-        //createActionListenerDelete();
+        createActionListenerDelete();
     }
 
     private void createWindow() {
@@ -358,6 +358,15 @@ public class Menu extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //new EditRelease();
+            }
+        });
+    }
+
+    private void createActionListenerDelete() {
+        deleteUser.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new DeleteUser();
             }
         });
     }
