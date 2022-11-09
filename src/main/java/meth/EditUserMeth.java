@@ -19,24 +19,26 @@ public class EditUserMeth {
     static ArrayList<String> allNames;
     static User user;
 
-    public static void editUser(String name, String oldPass, String pass, String rePass, boolean check) {
+    public static void editUser(User user, String name, String oldPass, String pass, String rePass, boolean check) {
         validFill = true;
         validUser = true;
         validPass = false;
 
+        EditUserMeth.user = user;
         EditUserMeth.name = name;
         EditUserMeth.oldPass = oldPass;
         EditUserMeth.pass = pass;
         EditUserMeth.rePass = rePass;
         EditUserMeth.check = check;
 
-
-        //check if username is available
-        if (!name.equals(user.getName()))
-            checkUsername();
-
-        //check if password is correct
-        checkPassword();
+        if(!name.equals("admin")){
+            //check if username is available
+            if (!name.equals(user.getName())) {
+                checkUsername();
+            }
+            //check if password is correct
+            checkPassword();
+        }
     }
 
     private static void checkUsername() {
@@ -58,17 +60,12 @@ public class EditUserMeth {
     }
 
     private static void checkPassword() {
-        for (String element : allNames) {
-            String users = convertName(removeEnding(element));
-
-            if (name.equals(users)) {
-                user = (User) readFile(folder, element);
-                if (oldPass.equals(user.getPassword()) && pass.equals(rePass)) {
-                    editUserPass();
-                }
-            }
-            EditUser.updateGuiPass(validPass);
+        if (oldPass.equals(user.getPassword()) && pass.equals(rePass)) {
+            validPass = true;
+            editUserPass();
         }
+
+        EditUser.updateGuiPass(validPass);
     }
 
     private static void editUserName() {

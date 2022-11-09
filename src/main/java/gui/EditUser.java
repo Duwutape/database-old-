@@ -30,6 +30,7 @@ public class EditUser extends JFrame implements ActionListener, ItemListener {
     String inputName, inputOldPass, inputPass, inputRePass;
     final String PATH = "files/user";
     File folder = new File(PATH);
+    ArrayList<String> allUsers = readName(folder);
     String selectedUser;
     User user;
 
@@ -90,27 +91,12 @@ public class EditUser extends JFrame implements ActionListener, ItemListener {
         button.addActionListener(this);
         comboBox.addItemListener(this);
 
-        if(comboBox.getItemAt(comboBox.getSelectedIndex()).equals("admin")){
-            updateGuiAdmin(false);
-        }
+        createSelectedUser();
     }
 
     @Override
     public void itemStateChanged(ItemEvent e) {
-        selectedUser = comboBox.getItemAt(comboBox.getSelectedIndex());
-        ArrayList<String> allNames = readName(folder);
-
-        for (String element : allNames) {
-            String users = convertName(removeEnding(element));
-
-            if (selectedUser.equals("admin")){
-                updateGuiAdmin(false);
-            }
-            else if (selectedUser.equals(users)) {
-                user = (User) readFile(folder, element);
-                updateGuiAdmin(true);
-            }
-        }
+       createSelectedUser();
     }
 
     @Override
@@ -118,26 +104,45 @@ public class EditUser extends JFrame implements ActionListener, ItemListener {
 
         inputName = tfName.getText();
         inputOldPass = tfOldPass.getText();
-        inputPass = tfOldPass.getText();
+        inputPass = tfPass.getText();
         inputRePass = tfRePass.getText();
         inputCheck = checkBox.isSelected();
 
-        editUser(inputName, inputOldPass, inputPass, inputRePass, inputCheck);
+        editUser(user, inputName, inputOldPass, inputPass, inputRePass, inputCheck);
+    }
+
+    private void  createSelectedUser() {
+        selectedUser = comboBox.getItemAt(comboBox.getSelectedIndex());
+
+        for (String element : allUsers) {
+            String users = convertName(removeEnding(element));
+
+            if (selectedUser.equals("admin")){
+                user = (User) readFile(folder, element);
+                updateGuiAdmin(false);
+                break;
+            }
+            else if (selectedUser.equals(users)) {
+                user = (User) readFile(folder, element);
+                updateGuiAdmin(true);
+                break;
+            }
+        }
     }
 
     private void updateGuiAdmin(boolean valid) {
         if (valid) {
             panel.remove(invalidAdmin);
-            panel.remove(tfName);
-            panel.remove(checkBox);
-            tfName = new JTextField(user.getName(), 15);
-            checkBox = new JCheckBox("",user.isAdmin());
-            addToPanel(panel, tfName, 0.5, 2, 1, 1);
-            addToPanel(panel, checkBox, 0.5, 2, 5,1);
-            frame.setVisible(true);
         } else {
             addToPanel(panel, invalidAdmin, 0.5, 2, 7, 1);
         }
+        panel.remove(tfName);
+        panel.remove(checkBox);
+        tfName = new JTextField(user.getName(), 15);
+        checkBox = new JCheckBox("",user.isAdmin());
+        addToPanel(panel, tfName, 0.5, 2, 1, 1);
+        addToPanel(panel, checkBox, 0.5, 2, 5,1);
+        frame.setVisible(true);
     }
 
     public static void updateGuiFill(boolean valid) {
