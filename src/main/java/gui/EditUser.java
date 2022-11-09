@@ -137,10 +137,16 @@ public class EditUser extends JFrame implements ActionListener, ItemListener {
             addToPanel(panel, invalidAdmin, 0.5, 2, 7, 1);
         }
         panel.remove(tfName);
+        panel.remove(tfPass);
+        panel.remove(tfOldPass);
+        panel.remove(tfRePass);
         panel.remove(checkBox);
         tfName = new JTextField(user.getName(), 15);
         checkBox = new JCheckBox("",user.isAdmin());
         addToPanel(panel, tfName, 0.5, 2, 1, 1);
+        addToPanel(panel, tfOldPass, 0.5, 2, 2, 1);
+        addToPanel(panel, tfPass, 0.5, 2, 3, 1);
+        addToPanel(panel, tfRePass, 0.5, 2, 4, 1);
         addToPanel(panel, checkBox, 0.5, 2, 5,1);
         frame.setVisible(true);
     }

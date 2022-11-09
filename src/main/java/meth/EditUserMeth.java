@@ -81,5 +81,6 @@ public class EditUserMeth {
     private static void editUserPass() {
         user.setPassword(pass);
         objToXML(user, createFilePath(PATH, createFileName(user.getName()), END));
+        EditUser.closeWindow();
     }
 }
