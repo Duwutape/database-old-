@@ -75,12 +75,16 @@ public class EditUserMeth {
 
     private static void editUserName() {
         File oldFile = new File(createFilePath(PATH, createFileName(user.getName()), END));
-        oldFile.delete();
+        boolean state = oldFile.delete();
+        if(state) {
+            user.setName(name);
+            objToXML(user, createFilePath(PATH, createFileName(name), END));
+            EditUser.closeWindow();
+        } else {
+            System.out.println("something went wrong");
+        }
+        EditUser.updateGuiDel(state);
 
-        user.setName(name);
-
-        objToXML(user, createFilePath(PATH, createFileName(name), END));
-        EditUser.closeWindow();
     }
 
     private static void editUserPass() {
