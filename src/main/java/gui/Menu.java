@@ -308,7 +308,7 @@ public class Menu extends JFrame {
         editSeries.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //new EditSeries();
+                new EditSeries();
             }
         });
 
