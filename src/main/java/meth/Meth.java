@@ -10,12 +10,16 @@ public class Meth {
 
     public static ArrayList<String> readName(File folder) {
         ArrayList<String> out = new ArrayList<String>();
-
-        for (File element : folder.listFiles()) {
-            String data = element.getName();
-            if (!data.equals("universe")) {
-                out.add(data);
+        try {
+            for (File element : folder.listFiles()) {
+                String data = element.getName();
+                if (!data.equals("universe")) {
+                    out.add(data);
+                }
             }
+
+        } catch (Exception e) {
+            System.out.println("There are no files");
         }
         return out;
     }
