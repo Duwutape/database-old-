@@ -103,6 +103,20 @@ public class Meth {
         return out;
     }
 
+    public static String listToStr(ArrayList<String> list) {
+        StringBuilder out = new StringBuilder();
+
+        for (String element : list) {
+            out.append(element);
+            out.append(", ");
+        }
+
+        int index = out.length();
+        out.delete(index - 2, index);
+
+        return out.toString();
+    }
+
     public static String removeEnding(String str) {
         return removeDot(str)[0];
     }
