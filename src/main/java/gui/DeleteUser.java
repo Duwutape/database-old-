@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-import static meth.Delete.deleteUserMeth;
+import static meth.DeleteMeth.deleteUserMeth;
 import static meth.Meth.createList;
 import static meth.SwingMeth.addToPanel;
 

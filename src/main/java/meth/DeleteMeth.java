@@ -7,7 +7,7 @@ import java.io.File;
 import static meth.Meth.createFileName;
 import static meth.Meth.createFilePath;
 
-public class Delete {
+public class DeleteMeth {
 
     final static String PATHUSER = "files/user/";
     final static String END = ".xml";
