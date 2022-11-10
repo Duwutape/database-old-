@@ -12,8 +12,8 @@ import static meth.XStreamMeth.objToXML;
 
 public class AddUniverseMovieMeth {
 
-    public static String name, alias;
-    public static boolean validFill, validExists, valid;
+    static String name, alias;
+    static boolean validFill, validExists, valid;
     static final String PATH = "files/data/movie/universe/";
     static final String END = ".xml";
     static File folder = new File("files/data/movie/universe");
@@ -59,7 +59,7 @@ public class AddUniverseMovieMeth {
 
     private static void createNewUniMov() {
         UniverseMovie universe = new UniverseMovie();
-        ArrayList<Movie> list = new ArrayList<Movie>();
+        ArrayList<Movie> list = new ArrayList<>();
         universe.setName(name);
         universe.setAlias(strToList(alias));
         universe.setMovie(list);

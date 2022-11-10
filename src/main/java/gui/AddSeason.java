@@ -9,7 +9,7 @@ import static meth.AddSeasonMeth.createSeason;
 import static meth.Meth.createList;
 import static meth.SwingMeth.addToPanel;
 
-public class AddSeason extends JFrame implements ActionListener {
+public class AddSeason implements ActionListener {
 
     static JFrame frame;
     static JPanel panel;
@@ -59,7 +59,7 @@ public class AddSeason extends JFrame implements ActionListener {
         tfPlatform = new JTextField(30);
         tfNumEpi = new JTextField(30);
         tfLenEpi = new JTextField(30);
-        comboBox = new JComboBox<String>(createList(PATH));
+        comboBox = new JComboBox<>(createList(PATH));
         button = new JButton("Submit");
         invalidFill = new JLabel("Season number must be filled in");
         invalidNum = new JLabel("All marked with ** need to be only one number");

@@ -11,7 +11,7 @@ import static meth.AddBookMeth.createBook;
 import static meth.Meth.createList;
 import static meth.SwingMeth.addToPanel;
 
-public class AddBook extends JFrame implements ActionListener, ItemListener {
+public class AddBook implements ActionListener, ItemListener {
 
     static JFrame frame;
     static JPanel panel;
@@ -49,7 +49,7 @@ public class AddBook extends JFrame implements ActionListener, ItemListener {
         author = new JLabel("Author");
         date = new JLabel("Publication date (dd-mm-yyyy)");
         alias = new JLabel("Alias");
-        comboBox = new JComboBox<String>(createList(PATH, "NONE"));
+        comboBox = new JComboBox<>(createList(PATH, "NONE"));
         tfNum = new JTextField(30);
         tfName = new JTextField(30);
         tfAuthor = new JTextField(30);

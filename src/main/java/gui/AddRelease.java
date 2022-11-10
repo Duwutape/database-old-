@@ -16,7 +16,7 @@ import static meth.AddReleaseMeth.createRelease;
 import static meth.Meth.*;
 import static meth.SwingMeth.addToPanel;
 
-public class AddRelease extends JFrame implements ActionListener, ItemListener {
+public class AddRelease implements ActionListener, ItemListener {
 
     static JFrame frame;
     static JPanel panel;
@@ -59,7 +59,7 @@ public class AddRelease extends JFrame implements ActionListener, ItemListener {
         notes = new JLabel("Notes");
         cBUni = new JComboBox<>(createList(PATHUNI, "NONE"));
         list = makeList();
-        cBGame = new JComboBox<String>(list);
+        cBGame = new JComboBox<>(list);
         tfYear = new JTextField(30);
         tfPlatform = new JTextField(30);
         tfNotes = new JTextField(30);
@@ -97,7 +97,7 @@ public class AddRelease extends JFrame implements ActionListener, ItemListener {
                 if (cBUni.getItemAt(cBUni.getSelectedIndex()).equals(name)) {
                     uniGame = (UniverseGame) readFile(folderUni, element);
                     ArrayList<Game> list = uniGame.getGame();
-                    ArrayList<String> out = new ArrayList<String>();
+                    ArrayList<String> out = new ArrayList<>();
                     for (Game game : list) {
                         out.add(game.getName());
                     }
@@ -112,7 +112,7 @@ public class AddRelease extends JFrame implements ActionListener, ItemListener {
     public void itemStateChanged(ItemEvent e) {
         list = makeList();
         panel.remove(cBGame);
-        cBGame = new JComboBox<String>(list);
+        cBGame = new JComboBox<>(list);
         addToPanel(panel, cBGame, 0.5, 2, 1, 2);
         frame.setVisible(true);
     }

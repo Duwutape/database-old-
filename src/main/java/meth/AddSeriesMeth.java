@@ -12,8 +12,8 @@ import static meth.XStreamMeth.objToXML;
 
 public class AddSeriesMeth {
 
-    public static String nameOV, language, nameGer, alias;
-    public static boolean validFill, validExists, valid;
+    static String nameOV, language, nameGer, alias;
+    static boolean validFill, validExists, valid;
     static final String PATH = "files/data/series/";
     static final String END = ".xml";
     static File folder = new File("files/data/series");
@@ -61,7 +61,7 @@ public class AddSeriesMeth {
 
     private static void createNewSeries() {
         Series series = new Series();
-        ArrayList<Season> list = new ArrayList<Season>();
+        ArrayList<Season> list = new ArrayList<>();
         series.setNameOV(nameOV);
         series.setLanguage(language);
         series.setNameGer(nameGer);

@@ -29,7 +29,6 @@ public class EditSeries implements ActionListener, ItemListener {
     String selectedSeries, inputNameOV, inputNameGer, inputLanguage, inputAlias;
     Series series;
 
-
     public EditSeries() {
 
         createWindow();
@@ -52,7 +51,7 @@ public class EditSeries implements ActionListener, ItemListener {
 
     private void createGui() {
         selectSeries = new JLabel("select series");
-        comboBox = new JComboBox<String>(createList(PATH));
+        comboBox = new JComboBox<>(createList(PATH));
         nameOV = new JLabel("Name OV*");
         language = new JLabel("Language OV*");
         nameGer = new JLabel("Name Ger*");

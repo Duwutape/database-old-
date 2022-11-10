@@ -11,7 +11,7 @@ import static meth.AddGameMeth.createGame;
 import static meth.Meth.createList;
 import static meth.SwingMeth.addToPanel;
 
-public class AddGame extends JFrame implements ActionListener, ItemListener {
+public class AddGame implements ActionListener, ItemListener {
     static JFrame frame;
     static JPanel panel;
     JLabel universe, num, name, usk, genre, alias;
@@ -48,7 +48,7 @@ public class AddGame extends JFrame implements ActionListener, ItemListener {
         usk = new JLabel("USK (*|**)");
         genre = new JLabel("Genre");
         alias = new JLabel("Alias");
-        comboBox = new JComboBox<String>(createList(PATH, "NONE"));
+        comboBox = new JComboBox<>(createList(PATH, "NONE"));
         tfNum = new JTextField(30);
         tfName = new JTextField(30);
         tfUsk = new JTextField(30);

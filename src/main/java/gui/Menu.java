@@ -2,8 +2,6 @@ package gui;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import static meth.SwingMeth.addToPanel;
 import static meth.SwingMeth.sepToPanel;
@@ -183,44 +181,24 @@ public class Menu extends JFrame {
     }
 
     private void createActionListenerSearch() {
-        bSearchSeries.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //SearchSeries(tfSearch.getText());
-                System.out.println("series");
-            }
+        bSearchSeries.addActionListener(e -> {
+            //SearchSeries(tfSearch.getText());
         });
 
-        bSearchAnime.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //SearchAnime(tfSearch.getText());
-                System.out.println("anime");
-            }
+        bSearchAnime.addActionListener(e -> {
+            //SearchAnime(tfSearch.getText());
         });
 
-        bSearchMovie.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //SearchMovie(tfSearch.getText());
-                System.out.println("movie");
-            }
+        bSearchMovie.addActionListener(e -> {
+            //SearchMovie(tfSearch.getText());
         });
 
-        bSearchBook.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //SearchBook(tfSearch.getText());
-                System.out.println("book");
-            }
+        bSearchBook.addActionListener(e -> {
+            //SearchBook(tfSearch.getText());
         });
 
-        bSearchGame.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //SearchGame(tfSearch.getText());
-                System.out.println("game");
-            }
+        bSearchGame.addActionListener(e -> {
+            //SearchGame(tfSearch.getText())
         });
     }
 
@@ -232,142 +210,61 @@ public class Menu extends JFrame {
             }
         });*/
 
-        addUser.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new AddUser();
-            }
-        });
+        addUser.addActionListener(e -> new AddUser());
 
-        addSeries.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new AddSeries();
-            }
-        });
+        addSeries.addActionListener(e -> new AddSeries());
 
-        addSeason.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new AddSeason();
-            }
-        });
+        addSeason.addActionListener(e -> new AddSeason());
 
-        addAnime.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new AddAnime();
-            }
-        });
+        addAnime.addActionListener(e -> new AddAnime());
 
-        addUniverse.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new AddUniverse();
-            }
-        });
+        addUniverse.addActionListener(e -> new AddUniverse());
 
-        addMovie.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new AddMovie();
-            }
-        });
+        addMovie.addActionListener(e -> new AddMovie());
 
-        addBook.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new AddBook();
-            }
-        });
+        addBook.addActionListener(e -> new AddBook());
 
-        addGame.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new AddGame();
-            }
-        });
+        addGame.addActionListener(e -> new AddGame());
 
-        addRelease.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new AddRelease();
-            }
-        });
+        addRelease.addActionListener(e -> new AddRelease());
     }
 
     private void createActionListenerEdit() {
 
-        editUser.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new EditUser();
-            }
+        editUser.addActionListener(e -> new EditUser());
+
+        editSeries.addActionListener(e -> new EditSeries());
+
+        editSeason.addActionListener(e -> {
+            //new EditSeason();
         });
 
-        editSeries.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new EditSeries();
-            }
+        editAnime.addActionListener(e -> {
+            //new EditAnime();
         });
 
-        editSeason.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //new EditSeason();
-            }
+        editUniverse.addActionListener(e -> {
+            //new EditUniverse();
         });
 
-        editAnime.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //new EditAnime();
-            }
+        editMovie.addActionListener(e -> {
+            //new EditBook();
         });
 
-        editUniverse.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //new EditUniverse();
-            }
+        editBook.addActionListener(e -> {
+            //new EditBook();
         });
 
-        editMovie.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //new EditBook();
-            }
+        editGame.addActionListener(e -> {
+            //new EditGame();
         });
 
-        editBook.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //new EditBook();
-            }
-        });
-
-        editGame.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //new EditGame();
-            }
-        });
-
-        editRelease.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //new EditRelease();
-            }
+        editRelease.addActionListener(e -> {
+            //new EditRelease();
         });
     }
 
     private void createActionListenerDelete() {
-        deleteUser.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new DeleteUser();
-            }
-        });
+        deleteUser.addActionListener(e -> new DeleteUser());
     }
 }

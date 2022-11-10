@@ -13,8 +13,8 @@ import static meth.XStreamMeth.objToXML;
 
 public class AddGameMeth {
 
-    public static String universe, num, name, usk, genre, alias;
-    public static boolean validFill, validNum, validIsNumber, validExists, valid;
+    static String universe, num, name, usk, genre, alias;
+    static boolean validFill, validNum, validIsNumber, validExists, valid;
     static final String PATH = "files/data/game/";
     static final String PATHUNI = "files/data/game/universe/";
     static final String END = ".xml";
@@ -103,7 +103,7 @@ public class AddGameMeth {
 
     private static void createNewGame() {
         Game game = new Game();
-        ArrayList<Release> list = new ArrayList<Release>();
+        ArrayList<Release> list = new ArrayList<>();
         game.setName(name);
         game.setUsk(usk);
         game.setGenre(strToList(genre));

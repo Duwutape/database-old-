@@ -12,8 +12,8 @@ import static meth.XStreamMeth.objToXML;
 
 public class AddUniverseGameMeth {
 
-    public static String name, alias;
-    public static boolean validFill, validExists, valid;
+    static String name, alias;
+    static boolean validFill, validExists, valid;
     static final String PATH = "files/data/game/universe/";
     static final String END = ".xml";
     static File folder = new File("files/data/game/universe");
@@ -59,7 +59,7 @@ public class AddUniverseGameMeth {
 
     private static void createNewUniGame() {
         UniverseGame universe = new UniverseGame();
-        ArrayList<Game> list = new ArrayList<Game>();
+        ArrayList<Game> list = new ArrayList<>();
         universe.setName(name);
         universe.setAlias(strToList(alias));
         universe.setGame(list);

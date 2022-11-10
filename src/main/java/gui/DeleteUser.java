@@ -16,8 +16,8 @@ public class DeleteUser implements ActionListener, ItemListener {
     static JFrame frame, frameConfirm;
     static JPanel panel, panelConfirm;
     JLabel selectUser, admin, warning, warningConfirm;
-    JComboBox<String> cBSelUser;
     JButton button, buttonCancel, buttonConfirm;
+    JComboBox<String> cBSelUser;
     final String PATH = "files/user";
 
     public DeleteUser() {
@@ -97,19 +97,9 @@ public class DeleteUser implements ActionListener, ItemListener {
         addToPanel(panelConfirm, buttonCancel, 0.5, 0, 1,1);
         addToPanel(panelConfirm, buttonConfirm, 0.5, 1, 1,1);
 
-        buttonConfirm.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                deleteUserMeth(cBSelUser.getItemAt(cBSelUser.getSelectedIndex()));
-            }
-        });
+        buttonConfirm.addActionListener(e -> deleteUserMeth(cBSelUser.getItemAt(cBSelUser.getSelectedIndex())));
 
-        buttonCancel.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frameConfirm.dispose();
-            }
-        });
+        buttonCancel.addActionListener(e -> frameConfirm.dispose());
     }
 
     public static void closeWindow(){

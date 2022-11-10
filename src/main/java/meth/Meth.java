@@ -2,6 +2,8 @@ package meth;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Objects;
 
 import static java.util.Collections.sort;
 import static meth.XStreamMeth.XMLToObj;
@@ -9,9 +11,9 @@ import static meth.XStreamMeth.XMLToObj;
 public class Meth {
 
     public static ArrayList<String> readName(File folder) {
-        ArrayList<String> out = new ArrayList<String>();
+        ArrayList<String> out = new ArrayList<>();
         try {
-            for (File element : folder.listFiles()) {
+            for (File element : Objects.requireNonNull(folder.listFiles())) {
                 String data = element.getName();
                 if (!data.equals("universe")) {
                     out.add(data);
@@ -73,7 +75,7 @@ public class Meth {
     public static String[] createList(String path) {
         File file = new File(path);
         ArrayList<String> names = readName(file);
-        ArrayList<String> out = new ArrayList<String>();
+        ArrayList<String> out = new ArrayList<>();
         for (String element : names) {
             out.add(convertName(removeEnding(element)));
         }
@@ -82,23 +84,19 @@ public class Meth {
     }
 
     public static String[] createList(String path, String item) {
-        ArrayList<String> out = new ArrayList<String>();
+        ArrayList<String> out = new ArrayList<>();
         String[] list = createList(path);
         out.add(item);
-        for (String str : list) {
-            out.add(str);
-        }
+        Collections.addAll(out, list);
         sort(out);
         return out.toArray(new String[0]);
     }
 
     public static ArrayList<String> strToList(String str) {
-        ArrayList<String> out = new ArrayList<String>();
+        ArrayList<String> out = new ArrayList<>();
 
         String[] splitted = str.split(", ", 0);
-        for (String str2 : splitted) {
-            out.add(str2);
-        }
+        Collections.addAll(out, splitted);
         sort(out);
         return out;
     }
@@ -139,14 +137,13 @@ public class Meth {
             }
 
         } else {
-            boolean out = str.matches("[0-9]+");
-            return out;
+            return str.matches("[0-9]+");
         }
         return false;
     }
 
     public static boolean checkDate(String date) {
-        String[] splitted = date.split("[-]");
+        String[] splitted = date.split("-");
         for (String str :
                 splitted) {
             if (!str.equals("XX") && !str.equals("xx")) {
@@ -158,7 +155,7 @@ public class Meth {
 
     public static Object readFile(File folder, String name) {
         Object obj = new Object();
-        for (File element : folder.listFiles()) {
+        for (File element : Objects.requireNonNull(folder.listFiles())) {
             String data = element.getName();
             if (data.equals(name)) {
                 obj = XMLToObj(element);

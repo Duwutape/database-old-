@@ -11,14 +11,14 @@ import static meth.AddMovieMeth.createMovie;
 import static meth.Meth.createList;
 import static meth.SwingMeth.addToPanel;
 
-public class AddMovie extends JFrame implements ActionListener, ItemListener {
+public class AddMovie implements ActionListener, ItemListener {
     static JFrame frame;
     static JPanel panel;
     JLabel universe, num, titleOV, titleGer, year, fsk, genre, len, alias;
     static JLabel invalidFill, invalidNum, invalidNumArr, invalidIsNum, invalidExists;
-    JComboBox<String> comboBox;
     JTextField tfNum, tfTitleOV, tfTitleGer, tfYear, tfFsk, tfGenre, tfLen, tfAlias;
     JButton button;
+    JComboBox<String> comboBox;
     String inputUniverse, inputNum, inputTitleOV, inputTitleGer, inputYear, inputFsk, inputGenre, inputLen, inputAlias;
     final String PATH = "files/data/movie";
 
@@ -52,7 +52,7 @@ public class AddMovie extends JFrame implements ActionListener, ItemListener {
         genre = new JLabel("Genre");
         len = new JLabel("Length in minutes (*|**)");
         alias = new JLabel("Alias");
-        comboBox = new JComboBox<String>(createList(PATH, "NONE"));
+        comboBox = new JComboBox<>(createList(PATH, "NONE"));
         tfNum = new JTextField(30);
         tfTitleOV = new JTextField(30);
         tfTitleGer = new JTextField(30);
