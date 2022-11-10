@@ -1,6 +1,6 @@
 package gui;
 
-import data.User;
+import data.Series;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,8 +11,7 @@ import java.awt.event.ItemListener;
 import java.io.File;
 import java.util.ArrayList;
 
-import static meth.Meth.createList;
-import static meth.Meth.readName;
+import static meth.Meth.*;
 import static meth.SwingMeth.addToPanel;
 
 public class EditSeries implements ActionListener, ItemListener {
@@ -23,11 +22,11 @@ public class EditSeries implements ActionListener, ItemListener {
     JTextField tfNameOV, tfNameGer, tfLanguage, tfAlias;
     JButton button;
     JComboBox<String> comboBox;
-    final String PATH = "files/series";
+    final String PATH = "files/data/series";
     File folder = new File(PATH);
-    ArrayList<String> allUsers = readName(folder);
-    String selectedUser;
-    User user;
+    ArrayList<String> allSeries = readName(folder);
+    String selectedSeries;
+    Series series;
 
 
     public EditSeries() {
@@ -38,7 +37,7 @@ public class EditSeries implements ActionListener, ItemListener {
 
     private void createWindow() {
         frame = new JFrame("Edit Series");
-        frame.setSize(400, 225);
+        frame.setSize(450, 225);
         frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
@@ -67,30 +66,63 @@ public class EditSeries implements ActionListener, ItemListener {
 
         addToPanel(panel, selectSeries, 0.5, 1, 0, 1);
         addToPanel(panel, comboBox, 0.5, 2, 0, 1);
-        addToPanel(panel, nameOV, 0.5, 1, 0, 1);
-        addToPanel(panel, tfNameOV, 0.5, 2, 0, 2);
-        addToPanel(panel, language, 0.5, 1, 1, 1);
-        addToPanel(panel, tfLanguage, 0.5, 2, 1, 2);
-        addToPanel(panel, nameGer, 0.5, 1, 2, 1);
-        addToPanel(panel, tfNameGer, 0.5, 2, 2, 2);
-        addToPanel(panel, alias, 0.5, 1, 3, 1);
-        addToPanel(panel, tfAlias, 0.5, 2, 3, 2);
-        addToPanel(panel, button, 0.5, 2, 4, 2);
+        addToPanel(panel, nameOV, 0.5, 1, 1, 1);
+        addToPanel(panel, tfNameOV, 0.5, 2, 1, 2);
+        addToPanel(panel, language, 0.5, 1, 2, 1);
+        addToPanel(panel, tfLanguage, 0.5, 2, 2, 2);
+        addToPanel(panel, nameGer, 0.5, 1, 3, 1);
+        addToPanel(panel, tfNameGer, 0.5, 2, 3, 2);
+        addToPanel(panel, alias, 0.5, 1, 4, 1);
+        addToPanel(panel, tfAlias, 0.5, 2, 4, 2);
+        addToPanel(panel, button, 0.5, 2, 5, 2);
 
         button.addActionListener(this);
         comboBox.addItemListener(this);
 
-        //createSelectedSeries();
+        updateGui();
     }
 
     @Override
     public void itemStateChanged(ItemEvent e) {
-        //createSelectedSeries();
+        updateGui();
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
+    }
+
+    private void updateGui() {
+        createSelectedSeries();
+
+        panel.remove(tfNameOV);
+        panel.remove(tfNameGer);
+        panel.remove(tfLanguage);
+        panel.remove(tfAlias);
+
+        tfNameOV = new JTextField(series.getNameOV(), 30);
+        tfLanguage = new JTextField(series.getLanguage(),30);
+        tfNameGer = new JTextField(series.getNameGer(),30);
+        tfAlias = new JTextField(listToStr(series.getAlias()), 30);
+
+        addToPanel(panel, tfNameOV, 0.5, 2, 1, 2);
+        addToPanel(panel, tfLanguage, 0.5, 2, 2, 2);
+        addToPanel(panel, tfNameGer, 0.5, 2, 3, 2);
+        addToPanel(panel, tfAlias, 0.5, 2, 4, 2);
+        frame.setVisible(true);
+    }
+
+    private void createSelectedSeries() {
+        selectedSeries = comboBox.getItemAt(comboBox.getSelectedIndex());
+
+        for (String element : allSeries) {
+            String name = convertName(removeEnding(element));
+
+            if (selectedSeries.equals(name)) {
+                series = (Series) readFile(folder, element);
+                break;
+            }
+        }
     }
 
 }
