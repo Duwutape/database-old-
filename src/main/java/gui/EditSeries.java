@@ -11,6 +11,7 @@ import java.awt.event.ItemListener;
 import java.io.File;
 import java.util.ArrayList;
 
+import static meth.EditSeriesMeth.editSeries;
 import static meth.Meth.*;
 import static meth.SwingMeth.addToPanel;
 
@@ -25,7 +26,7 @@ public class EditSeries implements ActionListener, ItemListener {
     final String PATH = "files/data/series";
     File folder = new File(PATH);
     ArrayList<String> allSeries = readName(folder);
-    String selectedSeries;
+    String selectedSeries, inputNameOV, inputNameGer, inputLanguage, inputAlias;
     Series series;
 
 
@@ -89,7 +90,12 @@ public class EditSeries implements ActionListener, ItemListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        inputNameOV = tfNameOV.getText();
+        inputLanguage = tfLanguage.getText();
+        inputNameGer = tfNameGer.getText();
+        inputAlias = tfAlias.getText();
 
+        editSeries(series, inputNameOV, inputLanguage, inputNameGer, inputAlias);
     }
 
     private void updateGui() {
