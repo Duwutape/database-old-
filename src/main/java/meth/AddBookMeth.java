@@ -12,8 +12,8 @@ import static meth.XStreamMeth.objToXML;
 
 public class AddBookMeth {
 
-    public static String universe, num, name, author, date, alias;
-    public static boolean validFill, validNum, validIsNumber, validExists, validDate, valid;
+    static String universe, num, name, author, date, alias;
+    static boolean validFill, validNum, validIsNumber, validExists, validDate, valid;
     static final String PATH = "files/data/book/";
     static final String END = ".xml";
     static File folder = new File("files/data/book");

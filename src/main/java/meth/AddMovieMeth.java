@@ -12,8 +12,8 @@ import static meth.XStreamMeth.objToXML;
 
 public class AddMovieMeth {
 
-    public static String universe, num, titleOV, titleGer, year, fsk, genre, len, alias;
-    public static boolean validFill, validNum, validIsNumber, validExists, valid;
+    static String universe, num, titleOV, titleGer, year, fsk, genre, len, alias;
+    static boolean validFill, validNum, validIsNumber, validExists, valid;
     static final String PATH = "files/data/movie/";
     static final String END = ".xml";
     static File folder = new File("files/data/movie/universe");

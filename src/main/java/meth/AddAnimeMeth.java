@@ -11,8 +11,8 @@ import static meth.XStreamMeth.objToXML;
 
 public class AddAnimeMeth {
 
-    public static String titleJap, titleEng, titleGer, year, fsk, genre, numEpi, lenEpi, alias;
-    public static boolean validFill, validNum, validIsNumber, validExists, valid;
+    static String titleJap, titleEng, titleGer, year, fsk, genre, numEpi, lenEpi, alias;
+    static boolean validFill, validNum, validIsNumber, validExists, valid;
     static final String PATH = "files/data/anime/";
     static final String END = ".xml";
     static File folder = new File("files/data/anime");

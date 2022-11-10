@@ -12,12 +12,10 @@ public class Login extends JFrame implements ActionListener {
 
     static JFrame frame;
     static JPanel panel;
-    JButton button;
-    JLabel login;
-    JLabel username;
-    JLabel password;
+    JLabel login, username, password;
     static JLabel invalid;
     JTextField textField, passwordField;
+    JButton button;
 
     public Login() {
 
@@ -48,12 +46,12 @@ public class Login extends JFrame implements ActionListener {
         button = new JButton("Login");
         invalid = new JLabel("Username and/or password is invalid");
 
-        addToPanel(panel, login, 0.5 ,2, 0, 1);
-        addToPanel(panel, username, 0.5 ,1, 1, 1);
-        addToPanel(panel, textField, 0.5 ,2, 1, 1);
-        addToPanel(panel, password, 0.5 ,1, 2, 1);
-        addToPanel(panel, passwordField, 0.5 ,2, 2, 1);
-        addToPanel(panel, button, 0.5 ,2, 3, 1);
+        addToPanel(panel, login, 0.5, 2, 0, 1);
+        addToPanel(panel, username, 0.5, 1, 1, 1);
+        addToPanel(panel, textField, 0.5, 2, 1, 1);
+        addToPanel(panel, password, 0.5, 1, 2, 1);
+        addToPanel(panel, passwordField, 0.5, 2, 2, 1);
+        addToPanel(panel, button, 0.5, 2, 3, 1);
 
         button.addActionListener(this);
 
@@ -71,7 +69,7 @@ public class Login extends JFrame implements ActionListener {
 
     public static void updateGuiValid() {
 
-        addToPanel(panel, invalid, 0.5, 2, 4 , 1);
+        addToPanel(panel, invalid, 0.5, 2, 4, 1);
         frame.setVisible(true);
     }
 }

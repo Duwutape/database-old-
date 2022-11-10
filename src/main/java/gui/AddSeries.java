@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 import static meth.AddSeriesMeth.createSeries;
 import static meth.SwingMeth.addToPanel;
 
-public class AddSeries extends JFrame implements ActionListener{
+public class AddSeries implements ActionListener{
 
     static JFrame frame;
     static JPanel panel;

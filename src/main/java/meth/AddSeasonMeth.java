@@ -11,8 +11,8 @@ import static meth.Meth.*;
 import static meth.XStreamMeth.objToXML;
 
 public class AddSeasonMeth {
-    public static String selectedSeries, num, yearOV, yearGer, fsk, genre, platform, numEpi, lenEpi;
-    public static boolean validFill, validNum, validIsNumber, validExists, valid;
+    static String selectedSeries, num, yearOV, yearGer, fsk, genre, platform, numEpi, lenEpi;
+    static boolean validFill, validNum, validIsNumber, validExists, valid;
     static final String PATH = "files/data/series/";
     static final String END = ".xml";
     static File folder = new File("files/data/series");

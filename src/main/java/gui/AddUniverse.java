@@ -10,7 +10,7 @@ import static meth.AddUniverseGameMeth.createUniGame;
 import static meth.AddUniverseMovieMeth.createUniMov;
 import static meth.SwingMeth.addToPanel;
 
-public class AddUniverse extends JFrame implements ActionListener {
+public class AddUniverse implements ActionListener {
 
     static JFrame frame;
     static JPanel panel;
@@ -19,8 +19,8 @@ public class AddUniverse extends JFrame implements ActionListener {
     JTextField tfName, tfAlias;
     JButton button;
     JComboBox<String> comboBox;
-    String[] list = {"Movie", "Book", "Game"};
     String inputName, inputAlias;
+    String[] list = {"Movie", "Book", "Game"};
 
     public AddUniverse() {
 

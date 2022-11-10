@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 import static meth.AddAnimeMeth.createAnime;
 import static meth.SwingMeth.addToPanel;
 
-public class AddAnime extends JFrame implements ActionListener {
+public class AddAnime implements ActionListener {
     static JFrame frame;
     static JPanel panel;
     JLabel titleJap, titleEng, titleGer, year, fsk, genre, numEpi, lenEpi, alias;

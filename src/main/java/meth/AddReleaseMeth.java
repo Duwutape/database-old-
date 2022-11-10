@@ -13,8 +13,8 @@ import static meth.XStreamMeth.objToXML;
 
 public class AddReleaseMeth {
 
-    public static String universe, selectedGame, year, platform, notes;
-    public static boolean validFill, validNum, validIsNumber, validExists, isUni, valid;
+    static String universe, selectedGame, year, platform, notes;
+    static boolean validFill, validNum, validIsNumber, validExists, isUni, valid;
     static final String PATH = "files/data/game/";
     static final String PATHUNI = "files/data/game/universe/";
     static final String END = ".xml";

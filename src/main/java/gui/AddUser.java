@@ -8,17 +8,12 @@ import java.awt.event.ActionListener;
 import static meth.AddUserMeth.createUser;
 import static meth.SwingMeth.addToPanel;
 
-public class AddUser extends JFrame implements ActionListener {
+public class AddUser implements ActionListener {
 
     static JFrame frame;
     static JPanel panel;
-    JLabel name;
-    JLabel password;
-    JLabel repeatPass;
-    JLabel makeAdmin;
-    static JLabel invalidUser;
-    static JLabel invalidPass;
-    static JLabel invalidFill;
+    JLabel name, password, repeatPass, makeAdmin;
+    static JLabel invalidUser,invalidPass,invalidFill;
     JTextField tfName;
     JPasswordField tfPass, tfRePass;
     JButton button;
