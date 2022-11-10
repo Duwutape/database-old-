@@ -82,7 +82,7 @@ public class AddUserMeth {
         user.setPassword(pass);
         user.setAdmin(check);
 
-        objToXML(user, createFilePath(PATH, name, END));
+        objToXML(user, createFilePath(PATH, createFileName(name), END));
     }
 
     public static void createAdmin() {
