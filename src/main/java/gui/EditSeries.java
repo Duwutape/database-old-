@@ -106,8 +106,8 @@ public class EditSeries implements ActionListener, ItemListener {
         panel.remove(tfAlias);
 
         tfNameOV = new JTextField(series.getNameOV(), 30);
-        tfLanguage = new JTextField(series.getLanguage(),30);
-        tfNameGer = new JTextField(series.getNameGer(),30);
+        tfLanguage = new JTextField(series.getLanguage(), 30);
+        tfNameGer = new JTextField(series.getNameGer(), 30);
         tfAlias = new JTextField(listToStr(series.getAlias()), 30);
 
         addToPanel(panel, tfNameOV, 0.5, 2, 1, 2);
@@ -130,4 +130,12 @@ public class EditSeries implements ActionListener, ItemListener {
         }
     }
 
+    public static void updateGuiValid(boolean valid) {
+        if (valid) {
+            panel.remove(invalidExists);
+        } else {
+            addToPanel(panel, invalidExists, 0.5, 1, 6, 1);
+        }
+        frame.setVisible(true);
+    }
 }
