@@ -138,4 +138,8 @@ public class EditSeries implements ActionListener, ItemListener {
         }
         frame.setVisible(true);
     }
+
+    public static void closeWindow() {
+        frame.dispose();
+    }
 }
