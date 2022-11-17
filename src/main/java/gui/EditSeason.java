@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import static meth.Meth.createList;
 import static meth.Meth.readName;
+import static meth.SwingMeth.addToPanel;
 
 public class EditSeason {
     static JFrame frame;
@@ -63,5 +64,25 @@ public class EditSeason {
         tfPlatform = new JTextField(30);
         tfNumEpi = new JTextField(30);
         tfLenEpi = new JTextField(30);
+
+        addToPanel(panel, getSeries, 0.5, 1, 0, 1);
+        addToPanel(panel, comboBox, 0.5, 2, 0, 1);
+        addToPanel(panel, num, 0.5, 1, 1, 1);
+        addToPanel(panel, tfNum, 0.5, 2, 1, 1);
+        addToPanel(panel, yearOV, 0.5, 1, 2, 1);
+        addToPanel(panel, tfYearOV, 0.5, 2, 2, 1);
+        addToPanel(panel, yearGer, 0.5, 1, 3, 1);
+        addToPanel(panel, tfYearGer, 0.5, 2, 3, 1);
+        addToPanel(panel, fsk, 0.5, 1, 4, 1);
+        addToPanel(panel, tfFsk, 0.5, 2, 4, 1);
+        addToPanel(panel, genre, 0.5, 1, 5, 1);
+        addToPanel(panel, tfGenre, 0.5, 2, 5, 1);
+        addToPanel(panel, platform, 0.5, 1, 6, 1);
+        addToPanel(panel, tfPlatform, 0.5, 2, 6, 1);
+        addToPanel(panel, numEpisodes, 0.5, 1, 7, 1);
+        addToPanel(panel, tfNumEpi, 0.5, 2, 7, 1);
+        addToPanel(panel, lengthEpisodes, 0.5, 1, 8, 1);
+        addToPanel(panel, tfLenEpi, 0.5, 2, 8, 1);
+        addToPanel(panel, button, 0.5, 2, 9, 1);
     }
 }
