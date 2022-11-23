@@ -7,27 +7,27 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.io.File;
 import java.util.ArrayList;
 
 import static meth.Meth.*;
 import static meth.SwingMeth.addToPanel;
 
-public class EditSeason implements ItemListener, ActionListener {
+public class EditSeason implements ActionListener {
     static JFrame frame;
     static JPanel panel;
     JLabel getSeries, getSeason, num, yearOV, yearGer, fsk, genre, platform, numEpisodes, lengthEpisodes;
     static JLabel invalidFill, invalidN, invalidDelete;
     JTextField tfNum, tfYearOV, tfYearGer, tfFsk, tfGenre, tfPlatform, tfNumEpi, tfLenEpi;
     JButton button;
-    JComboBox<String> cBSeries;
-    JComboBox<Season> cBSeason;
+    JComboBox<String> cBSeries, cBSeason;
     String selectedSeries, inputNum, inputYearOV, inputFsk, inputGenre, inputPlatform, inputNumEpi, inputLenEpi;
-    final String PATH = "files/series";
+    final String PATH = "files/data/series";
     File folder = new File(PATH);
     ArrayList<String> allSeries = readName(folder);
+    ArrayList<String> seasonList = new ArrayList<>();
+    ArrayList<Season> allSeasons;
+    String[] test = {"Test"};
     Series series;
     Season season;
 
@@ -39,7 +39,7 @@ public class EditSeason implements ItemListener, ActionListener {
 
     private void createWindow() {
         frame = new JFrame("Edit Season");
-        frame.setSize(400, 225);
+        frame.setSize(500, 400);
         frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
@@ -55,7 +55,7 @@ public class EditSeason implements ItemListener, ActionListener {
         getSeries = new JLabel("select Series");
         cBSeries = new JComboBox<>(createList(PATH));
         getSeason = new JLabel("select Season");
-        cBSeason = new JComboBox<>(createList(PATH));
+        cBSeason = new JComboBox<>();
         num = new JLabel("Number of Season");
         yearOV = new JLabel("Year OV");
         yearGer = new JLabel("Year Ger");
@@ -72,30 +72,33 @@ public class EditSeason implements ItemListener, ActionListener {
         tfPlatform = new JTextField(30);
         tfNumEpi = new JTextField(30);
         tfLenEpi = new JTextField(30);
+        button = new JButton("Submit");
 
         addToPanel(panel, getSeries, 0.5, 1, 0, 1);
         addToPanel(panel, cBSeries, 0.5, 2, 0, 1);
-        addToPanel(panel, num, 0.5, 1, 1, 1);
-        addToPanel(panel, tfNum, 0.5, 2, 1, 1);
-        addToPanel(panel, yearOV, 0.5, 1, 2, 1);
-        addToPanel(panel, tfYearOV, 0.5, 2, 2, 1);
-        addToPanel(panel, yearGer, 0.5, 1, 3, 1);
-        addToPanel(panel, tfYearGer, 0.5, 2, 3, 1);
-        addToPanel(panel, fsk, 0.5, 1, 4, 1);
-        addToPanel(panel, tfFsk, 0.5, 2, 4, 1);
-        addToPanel(panel, genre, 0.5, 1, 5, 1);
-        addToPanel(panel, tfGenre, 0.5, 2, 5, 1);
-        addToPanel(panel, platform, 0.5, 1, 6, 1);
-        addToPanel(panel, tfPlatform, 0.5, 2, 6, 1);
-        addToPanel(panel, numEpisodes, 0.5, 1, 7, 1);
-        addToPanel(panel, tfNumEpi, 0.5, 2, 7, 1);
-        addToPanel(panel, lengthEpisodes, 0.5, 1, 8, 1);
-        addToPanel(panel, tfLenEpi, 0.5, 2, 8, 1);
-        addToPanel(panel, button, 0.5, 2, 9, 1);
+        addToPanel(panel, getSeason, 0.5, 1, 1, 1);
+        addToPanel(panel, cBSeason, 0.5, 2, 1, 1);
+        addToPanel(panel, num, 0.5, 1, 2, 1);
+        addToPanel(panel, tfNum, 0.5, 2, 2, 1);
+        addToPanel(panel, yearOV, 0.5, 1, 3, 1);
+        addToPanel(panel, tfYearOV, 0.5, 2, 3, 1);
+        addToPanel(panel, yearGer, 0.5, 1, 4, 1);
+        addToPanel(panel, tfYearGer, 0.5, 2, 4, 1);
+        addToPanel(panel, fsk, 0.5, 1, 5, 1);
+        addToPanel(panel, tfFsk, 0.5, 2, 5, 1);
+        addToPanel(panel, genre, 0.5, 1, 6, 1);
+        addToPanel(panel, tfGenre, 0.5, 2, 6, 1);
+        addToPanel(panel, platform, 0.5, 1, 7, 1);
+        addToPanel(panel, tfPlatform, 0.5, 2, 7, 1);
+        addToPanel(panel, numEpisodes, 0.5, 1, 8, 1);
+        addToPanel(panel, tfNumEpi, 0.5, 2, 8, 1);
+        addToPanel(panel, lengthEpisodes, 0.5, 1, 9, 1);
+        addToPanel(panel, tfLenEpi, 0.5, 2, 9, 1);
+        addToPanel(panel, button, 0.5, 2, 10, 1);
 
         button.addActionListener(this);
         cBSeries.addItemListener(e -> createSelectedSeries());
-        cBSeason.addItemListener(e -> createSelectedSeason());
+        //cBSeason.addItemListener(e -> createSelectedSeason());
 
         createSelectedSeries();
     }
@@ -121,8 +124,17 @@ public class EditSeason implements ItemListener, ActionListener {
 
     private void updateGuiSeries() {
         panel.remove(cBSeason);
-        cBSeason = new JComboBox<>((series.getSeasons());
+        allSeasons = series.getSeasons();
+        for (Season element : allSeasons) {
+            seasonList.add(element.getNum());
+        }
+        if (seasonList.size() != 0) {
+            cBSeason = new JComboBox<>(seasonList.toArray(new String[0]));
+        } else {
+            cBSeason = new JComboBox<>(test);
+        }
         addToPanel(panel, cBSeason, 0.5, 2, 1, 1);
+        frame.setVisible(true);
     }
 
     private void updateGuiSeason() {

@@ -235,9 +235,7 @@ public class Menu extends JFrame {
 
         editSeries.addActionListener(e -> new EditSeries());
 
-        editSeason.addActionListener(e -> {
-            //new EditSeason();
-        });
+        editSeason.addActionListener(e -> new EditSeason());
 
         editAnime.addActionListener(e -> {
             //new EditAnime();
