@@ -21,11 +21,11 @@ public class EditSeason implements ActionListener {
     JTextField tfNum, tfYearOV, tfYearGer, tfFsk, tfGenre, tfPlatform, tfNumEpi, tfLenEpi;
     JButton button;
     JComboBox<String> cBSeries, cBSeason;
-    String selectedSeries, inputNum, inputYearOV, inputFsk, inputGenre, inputPlatform, inputNumEpi, inputLenEpi;
+    String selectedSeries, selectedSeason, inputNum, inputYearOV, inputFsk, inputGenre, inputPlatform, inputNumEpi, inputLenEpi;
     final String PATH = "files/data/series";
     File folder = new File(PATH);
     ArrayList<String> allSeries = readName(folder);
-    ArrayList<String> seasonList = new ArrayList<>();
+    ArrayList<String> seasonList;
     ArrayList<Season> allSeasons;
     String[] test = {"Test"};
     Series series;
@@ -98,9 +98,10 @@ public class EditSeason implements ActionListener {
 
         button.addActionListener(this);
         cBSeries.addItemListener(e -> createSelectedSeries());
-        //cBSeason.addItemListener(e -> createSelectedSeason());
+        cBSeason.addItemListener(e -> createSelectedSeason());
 
         createSelectedSeries();
+        createSelectedSeason();
     }
 
     @Override
@@ -122,9 +123,22 @@ public class EditSeason implements ActionListener {
         }
     }
 
+    private void createSelectedSeason() {
+        selectedSeason = cBSeason.getItemAt(cBSeason.getSelectedIndex());
+
+        for (Season season : series.getSeasons()) {
+            if (selectedSeason.equals(season.getNum())) {
+                updateGuiSeason(season);
+                break;
+            }
+        }
+    }
+
     private void updateGuiSeries() {
         panel.remove(cBSeason);
         allSeasons = series.getSeasons();
+
+        seasonList = new ArrayList<>();
         for (Season element : allSeasons) {
             seasonList.add(element.getNum());
         }
@@ -137,7 +151,7 @@ public class EditSeason implements ActionListener {
         frame.setVisible(true);
     }
 
-    private void updateGuiSeason() {
+    private void updateGuiSeason(Season season) {
         panel.remove(tfNum);
         panel.remove(tfYearOV);
         panel.remove(tfYearGer);
@@ -146,6 +160,26 @@ public class EditSeason implements ActionListener {
         panel.remove(tfPlatform);
         panel.remove(tfNumEpi);
         panel.remove(tfLenEpi);
+
+        tfNum = new JTextField(season.getNum(), 30);
+        tfYearOV = new JTextField(listToStr(season.getYearOV()), 30);
+        tfYearGer = new JTextField(listToStr(season.getYearGer()), 30);
+        tfFsk = new JTextField(season.getFsk(), 30);
+        tfGenre = new JTextField(listToStr(season.getGenre()), 30);
+        tfPlatform = new JTextField(listToStr(season.getPlatform()), 30);
+        tfNumEpi = new JTextField(season.getNumEpisodes(), 30);
+        tfLenEpi = new JTextField(season.getLengthEpisodes(), 30);
+
+        addToPanel(panel, tfNum, 0.5, 2, 2, 1);
+        addToPanel(panel, tfYearOV, 0.5, 2, 3, 1);
+        addToPanel(panel, tfYearGer, 0.5, 2, 4, 1);
+        addToPanel(panel, tfFsk, 0.5, 2, 5, 1);
+        addToPanel(panel, tfGenre, 0.5, 2, 6, 1);
+        addToPanel(panel, tfPlatform, 0.5, 2, 7, 1);
+        addToPanel(panel, tfNumEpi, 0.5, 2, 8, 1);
+        addToPanel(panel, tfLenEpi, 0.5, 2, 9, 1);
+
+        frame.setVisible(true);
 
     }
 }
